@@ -18,13 +18,13 @@ const MyTabs = () => {
       screenOptions={({navigation, route}) => ({
         headerRight:() => (
           <Pressable onPress={() => navigation.navigate("Add")}>
-            <Ionicons name="add" size={30} color="black" />
+            <Text size={30} color="orange">Add </Text>
           </Pressable>
         )
       })}
     >  
-      <Tab.Screen name="All" component={AllActivities} />
-      <Tab.Screen name="Special" component={SpecialActivities} />
+      <Tab.Screen name="All Activities" component={AllActivities} />
+      <Tab.Screen name="Special Acitivities" component={SpecialActivities} />
     </Tab.Navigator>
   )
 }
