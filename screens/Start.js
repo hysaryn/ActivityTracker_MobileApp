@@ -30,7 +30,7 @@ export default function Start({navigation}) {
 
             if (emailRegex.test(email) && phoneRegex.test(phone)) {
                 // Valid data, navigate to the next screen
-                navigation.navigate('Home');
+                navigation.navigate(' ');
             } 
             if (!phoneRegex.test(phone)) {
                 setPhoneError("Please enter a valid phone number");

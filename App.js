@@ -24,14 +24,14 @@ const MyTabs = () => {
         headerRight:() => {
           return <Button title="Add" color="orange" onPress={() => {navigation.navigate('Add')}} />
         },
-        tabBarIcon:() => {
+        tabBarIcon:({size, color}) => {
           let iconName;
           if (route.name === 'All Activities') {
             iconName ='dollar'; // Icon name for "All" tab
           } else if (route.name === 'Special Activities') {
             iconName ='exclamation'; // Icon name for "Special" tab
           }
-          return <FontAwesome6 name={iconName} size={24} color="orange" />;
+          return <FontAwesome6 name={iconName} size={size} color={color} />;
         }
       })}
     >  
@@ -57,13 +57,14 @@ export default function App() {
           component={Start}
           options={{headerShown:false}}/>
         <Stack.Screen 
-          name="Home"
+          name=" "
           component={MyTabs}
           options={{headerShown: false}}/>
         <Stack.Screen 
           name="Add"
           component={AddActivity}
-          options={{title: "Add an Activity"}}/>  
+          options={{
+            title: "Add an Activity"}}/>  
       </Stack.Navigator>
     </NavigationContainer>
   );

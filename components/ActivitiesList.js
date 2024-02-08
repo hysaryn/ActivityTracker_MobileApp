@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import CommonStyles from '../styles/CommonStyles'
 
-export default function AllActivities() {
+export default function ActivitiesList() {
   return (
-    <View style={CommonStyles.container}>
+    <View>
+      <Text>ActivitiesList</Text>
     </View>
   )
 }
