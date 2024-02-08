@@ -4,7 +4,7 @@ import CommonStyles from '../styles/CommonStyles'
 
 export default function Card({children}) {
   return (
-    <View styles={CommonStyles.card}>
+    <View style={CommonStyles.card}>
       {children}
     </View>
   )

@@ -14,12 +14,6 @@ const CommonStyles = StyleSheet.create({
         backgroundColor: "rgb(154,150,221)",
     },
 
-    regularFont:{
-        fontSize:18,
-        alignSelf:'flex-start',
-        color:"rgb(60,61,132)",
-    },
-
     fontGrey: {
         color: 'dimgrey',
     },
@@ -41,6 +35,10 @@ const CommonStyles = StyleSheet.create({
         backgroundColor:"rgb(127,123,189)",
         justifyItem:'start',
         justifyContent:'center',
+    },
+
+    contentContainer: {
+        width: '90%'
     },
 
     buttonsContainer:{
@@ -67,24 +65,40 @@ const CommonStyles = StyleSheet.create({
         marginBottom:'2%'
     },
 
-    contentContainer: {
-        width: '90%'
+    regularFont:{
+        fontSize:18,
+        alignSelf:'flex-start',
+        color:"rgb(60,61,132)",
+    },
+
+    boxFont:{
+        fontSize:13,
+        alignSelf:'flex-start',
+        color:"white",
+        fontWeight:'bold',
+    },
+
+    boxFont2:{
+        fontSize:13,
+        color:"rgb(60,61,132)",
+        backgroundColor:'white',
+        fontWeight:'bold',
     },
 
     card: {
-        height:50,
-        backgroundColor: 'purple',
-        width:'90%',
+        backgroundColor: "rgb(60,61,132)",
+        width:300,
+        height: 40,
         borderRadius:5,
         alignItems: 'flex-start',
+        justifyContent: 'space-evenly',
         shadowRadius:3,
-        shadowOpacity: 0.2
+        shadowOpacity: 0.2,
+        marginTop:'10%',
     },
 
     directionRow: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
       },
 
 })
