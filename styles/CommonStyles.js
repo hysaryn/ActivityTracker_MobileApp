@@ -14,13 +14,8 @@ const CommonStyles = StyleSheet.create({
         backgroundColor: "rgb(154,150,221)",
     },
 
-    fontGrey: {
-        color: 'dimgrey',
-    },
-
-    fontPurple: {
-        color: "rgb(60,61,132)",
-    },
+    fontGrey: 'dimgrey',
+    fontPurple: "rgb(60,61,132)",
 
     container: {
         flex:1,
@@ -90,8 +85,7 @@ const CommonStyles = StyleSheet.create({
         width:300,
         height: 40,
         borderRadius:5,
-        alignItems: 'flex-start',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         shadowRadius:3,
         shadowOpacity: 0.2,
         marginTop:'10%',

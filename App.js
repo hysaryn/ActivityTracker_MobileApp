@@ -9,6 +9,7 @@ import AllActivities from './screens/AllActivities';
 import SpecialActivities from './screens/SpecialActivities';
 import Start from './screens/Start';
 import CommonStyles from './styles/CommonStyles';
+import { ActivityProvider } from './components/ActivityContext';
 
 //nested navigation of two bottom tabs in home screen
 const Tab = createBottomTabNavigator();
@@ -46,6 +47,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
+      <ActivityProvider>
       <Stack.Navigator
         screenOptions = {{
           headerStyle: CommonStyles.purpleDark,
@@ -66,6 +68,7 @@ export default function App() {
           options={{
             title: "Add an Activity"}}/>  
       </Stack.Navigator>
+      </ActivityProvider>
     </NavigationContainer>
   );
 }

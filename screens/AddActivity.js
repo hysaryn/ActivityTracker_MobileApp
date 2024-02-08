@@ -40,10 +40,7 @@ export default function AddActivity({navigation}) {
           date: date.toDateString() // Convert date object to string
         };
         
-        console.log(newActivity);
-        //setActivities((activities) =>[...activities, newActivity]);
-        console.log(activities);
-        console.log(setActivities);
+        setActivities((activities) =>[...activities, newActivity]);
         navigation.goBack();
     };
     
@@ -64,7 +61,7 @@ export default function AddActivity({navigation}) {
                     setValue={setActivityType}
                     setItems={setItems}
                     style={{backgroundColor: "rgb(154,150,221)", marginBottom:'10%'}}
-                    textStyle={{color: "rgb(60,61,132)"}}
+                    textStyle={{color: CommonStyles.fontPurple}}
                     placeholder="Select an activity"
                 />
                 <Input
@@ -77,11 +74,12 @@ export default function AddActivity({navigation}) {
                 <DateTimePicker
                     value={date}
                     mode="date"
-                    display="default"
+                    display='default'
                     onChange={onChangeDate}
-                    dateFormat="dayofweek day month" 
+                    is24Hour={true}
                     style={[{ 
                         display: 'inline'}, CommonStyles.inputBox]}
+                    textColor={CommonStyles.fontPurple}
                     />
                 </View>
                 <View style={[CommonStyles.buttonsContainer,{marginTop: '40%'}]}>

@@ -1,17 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { createContext, useState } from 'react'
-import ActivitiesList from './ActivitiesList';
-import AddActivity from '../screens/AddActivity';
 
 export const ActivityContext = createContext([]);
 
-export default function Activity() {
-    const[activities, setActivities] = useState([{type: null, duration: null, date: null}]);
+export function ActivityProvider({children}) {
+    const[activities, setActivities] = useState([]);
 
     return (
         <ActivityContext.Provider value={{activities, setActivities}}>
-            <ActivitiesList />
-            <AddActivity />
+            {children}
         </ActivityContext.Provider>
     )
 }

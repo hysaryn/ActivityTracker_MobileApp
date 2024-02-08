@@ -57,7 +57,7 @@ export default function Start({navigation}) {
                 <View style={CommonStyles.buttonsContainer}>
                     <Button color={'red'} title='Reset' onPress={handleReset} />
                     <Button 
-                        color={"rgb(60,61,132)"} 
+                        color={CommonStyles.fontPurple}
                         title='Confirm'
                         disabled={!(email || phone)} 
                         onPress={handleStart} />
