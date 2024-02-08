@@ -6,10 +6,10 @@ import AddActivity from '../screens/AddActivity';
 export const ActivityContext = createContext([]);
 
 export default function Activity() {
-    const[activities, setActivities] = useState([]);
+    const[activities, setActivities] = useState([{type: null, duration: null, date: null}]);
 
     return (
-        <ActivityContext.Provider value = {{activities, setActivities}}>
+        <ActivityContext.Provider value={{activities, setActivities}}>
             <ActivitiesList />
             <AddActivity />
         </ActivityContext.Provider>

@@ -35,6 +35,14 @@ const CommonStyles = StyleSheet.create({
         justifyContent:'center',
     },
 
+    addContainer: {
+        flex: '100%',
+        flexDirection:'row',
+        backgroundColor:"rgb(127,123,189)",
+        justifyItem:'start',
+        justifyContent:'center',
+    },
+
     buttonsContainer:{
         flexDirection:'row',
         width:'100%',
@@ -43,11 +51,12 @@ const CommonStyles = StyleSheet.create({
 
     inputBox: {
         width:'100%',
-        height: 30,
+        height: 40,
         backgroundColor:"rgb(154,150,221)",
+        borderColor:"rgb(60,61,132)",
         borderWidth:1,
         borderRadius:4,
-        marginBottom:'5%',
+        marginBottom:'2%',
     },
 
     inputHeader:{
@@ -58,9 +67,25 @@ const CommonStyles = StyleSheet.create({
         marginBottom:'2%'
     },
 
-    content: {
-        margin: '5%',
+    contentContainer: {
+        width: '90%'
     },
+
+    card: {
+        height:50,
+        backgroundColor: 'purple',
+        width:'90%',
+        borderRadius:5,
+        alignItems: 'flex-start',
+        shadowRadius:3,
+        shadowOpacity: 0.2
+    },
+
+    directionRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+      },
 
 })
 
