@@ -5,6 +5,7 @@ import CommonStyles from '../styles/CommonStyles'
 export default function AllActivities() {
   return (
     <View style={CommonStyles.container}>
+        <ActivitiesList type="all" />
     </View>
   )
 }

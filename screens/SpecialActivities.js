@@ -5,7 +5,7 @@ import CommonStyles from '../styles/CommonStyles'
 export default function SpecialActivities() {
   return (
     <View style={CommonStyles.container}>
-      <Text>SpecialActivities</Text>
+      <ActivitiesList type="special" />
     </View>
   )
 }

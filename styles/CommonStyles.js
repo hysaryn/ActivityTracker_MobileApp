@@ -47,8 +47,20 @@ const CommonStyles = StyleSheet.create({
         backgroundColor:"rgb(154,150,221)",
         borderWidth:1,
         borderRadius:4,
-        marginTop:'2%',
-    }
+        marginBottom:'5%',
+    },
+
+    inputHeader:{
+        fontSize:18,
+        alignSelf:'flex-start',
+        color:"rgb(60,61,132)",
+        fontWeight:'bold',
+        marginBottom:'2%'
+    },
+
+    content: {
+        margin: '5%',
+    },
 
 })
 

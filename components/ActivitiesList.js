@@ -1,20 +1,20 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
-import ActivityContext from './ActivityContext'
+import {ActivityContext} from './Activity'
 
 export default function ActivitiesList({type}) {
-    const {data} = useContext(ActivityContext);
+    const {activities, setActivities} = useContext(ActivityContext);
 
     const filteredActivities = type === 'special' ? 
-    data.filter(activity => (activity.type === 'Running' || activity.type === 'Weight Training') && activity.duration > 60) :
-    data;
+    activities.filter(activity => (activity.type === 'Running' || activity.type === 'Weight Training') && activity.duration > 60) :
+    activities;
 
     return (
         <FlatList
         data={filteredActivities}
         renderItem={({item}) => (
             <Text>
-                {item.type} - {item.data} - {item.duration} min
+                {item.type} - {item.date} - {item.duration} min
             </Text>
         )} />
     )

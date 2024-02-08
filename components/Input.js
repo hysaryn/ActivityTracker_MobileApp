@@ -6,7 +6,7 @@ export default function Input({label, value, onChangeText, error}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.inputHeader}>{label}</Text>
+      <Text style={CommonStyles.inputHeader}>{label}</Text>
       <TextInput
         style={styles.input}
         value={value}
@@ -22,11 +22,6 @@ const styles = StyleSheet.create({
         width:'100%',
         marginBottom:'10%',
     },
-
-    inputHeader:[
-        {fontWeight:'bold'},
-        CommonStyles.regularFont,
-    ],
 
     input:[,
         CommonStyles.inputBox,
