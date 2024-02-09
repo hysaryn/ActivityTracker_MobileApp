@@ -9,7 +9,7 @@ import Input from '../components/Input';
 
 export default function AddActivity({navigation}) {
     const [duration, setDuration] = useState('');
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState('');
     const [showDatePicker, setShowDatePicker] = useState(false);
     const {activities, setActivities} = useContext(ActivityContext); 
 
@@ -45,7 +45,7 @@ export default function AddActivity({navigation}) {
     };
     
     const onChangeDate = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
+        const currentDate = selectedDate;
         setShowDatePicker(false);
         setDate(currentDate);
       };
@@ -63,7 +63,7 @@ export default function AddActivity({navigation}) {
                     setItems={setItems}
                     style={{backgroundColor: CommonStyles.purpleLightColor, marginBottom:'2%'}}
                     textStyle={{color: CommonStyles.fontPurple}}
-                    placeholder="Select an activity"
+                    placeholder="Select An Activity"
                 />
                 <Input
                     label="Duration (min)*"
@@ -72,11 +72,11 @@ export default function AddActivity({navigation}) {
                 />
                 <Input
                     label="Date *"
-                    value={date.toDateString()}
+                    value={date ? date.toDateString() : ''}
                     focusHandler={() => setShowDatePicker(true)}
                 />
                 {showDatePicker && <DateTimePicker
-                    value={date}
+                    value={new Date()}
                     mode="date"
                     display='inline'
                     onChange={onChangeDate}
