@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 
 const CommonStyles = StyleSheet.create({
+    //color
     fontPurple: "rgb(60,61,132)",
-
     purpleLightColor: "rgb(154,150,221)",
     
+    //background color
     purpleDark: {
         backgroundColor: "rgb(60,61,132)",
     },
@@ -28,6 +29,7 @@ const CommonStyles = StyleSheet.create({
         justifyContent:'center',
     },
 
+    //container used in add an activity screen
     addContainer: {
         flex: '100%',
         flexDirection:'row',
