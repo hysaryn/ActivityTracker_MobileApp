@@ -46,6 +46,7 @@ export default function AddActivity({navigation}) {
     
     const onChangeDate = (event, selectedDate) => {
         const currentDate = selectedDate || date;
+        setShowDatePicker(false);
         setDate(currentDate);
       };
 
@@ -60,7 +61,7 @@ export default function AddActivity({navigation}) {
                     setOpen={setOpen}
                     setValue={setActivityType}
                     setItems={setItems}
-                    style={{backgroundColor: "rgb(154,150,221)", marginBottom:'10%'}}
+                    style={{backgroundColor: CommonStyles.purpleLightColor, marginBottom:'2%'}}
                     textStyle={{color: CommonStyles.fontPurple}}
                     placeholder="Select an activity"
                 />
@@ -69,22 +70,20 @@ export default function AddActivity({navigation}) {
                     value={duration}
                     onChangeText={(data) => setDuration(data)}
                 />
-                <Text style={CommonStyles.inputHeader}>Date *</Text>
-                <View >
-                <DateTimePicker
+                <Input
+                    label="Date *"
+                    value={date.toDateString()}
+                    focusHandler={() => setShowDatePicker(true)}
+                />
+                {showDatePicker && <DateTimePicker
                     value={date}
                     mode="date"
-                    display='default'
+                    display='inline'
                     onChange={onChangeDate}
-                    is24Hour={true}
-                    style={[{ 
-                        display: 'inline'}, CommonStyles.inputBox]}
-                    textColor={CommonStyles.fontPurple}
-                    />
-                </View>
+                    /> }
                 <View style={[CommonStyles.buttonsContainer,{marginTop: '40%'}]}>
                     <Button title="Cancel" color='red' onPress={() => navigation.goBack()} />
-                    <Button title="Save" color="rgb(60,61,132)" onPress={saveActivity} />
+                    <Button title="Save" color={CommonStyles.fontPurple} onPress={saveActivity} />
                 </View>
             </View>
         </View>

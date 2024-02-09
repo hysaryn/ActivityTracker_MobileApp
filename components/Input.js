@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import CommonStyles from '../styles/CommonStyles'
 
-export default function Input({label, value, onChangeText, error}) {
+export default function Input({label, value, onChangeText, error, focusHandler}) {
 
   return (
     <View style={styles.container}>
@@ -11,6 +11,7 @@ export default function Input({label, value, onChangeText, error}) {
         style={styles.input}
         value={value}
         onChangeText={onChangeText}
+        onFocus={focusHandler}
         />
       {error && <Text style={styles.errorMessage}>{error}</Text>}
     </View>
@@ -20,7 +21,7 @@ export default function Input({label, value, onChangeText, error}) {
 const styles = StyleSheet.create({
     container:{
         width:'100%',
-        marginBottom:'10%',
+        marginTop:'2%',
     },
 
     input:[,

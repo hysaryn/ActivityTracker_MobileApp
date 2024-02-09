@@ -1,7 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 
 const CommonStyles = StyleSheet.create({
+    fontPurple: "rgb(60,61,132)",
+
+    purpleLightColor: "rgb(154,150,221)",
+    
     purpleDark: {
         backgroundColor: "rgb(60,61,132)",
     },
@@ -14,8 +17,9 @@ const CommonStyles = StyleSheet.create({
         backgroundColor: "rgb(154,150,221)",
     },
 
-    fontGrey: 'dimgrey',
-    fontPurple: "rgb(60,61,132)",
+    fontGrey: {
+        color:'dimgrey',
+    },
 
     container: {
         flex:1,
@@ -44,7 +48,7 @@ const CommonStyles = StyleSheet.create({
 
     inputBox: {
         width:'100%',
-        height: 40,
+        height: 35,
         backgroundColor:"rgb(154,150,221)",
         borderColor:"rgb(60,61,132)",
         borderWidth:1,
@@ -53,7 +57,7 @@ const CommonStyles = StyleSheet.create({
     },
 
     inputHeader:{
-        fontSize:18,
+        fontSize:15,
         alignSelf:'flex-start',
         color:"rgb(60,61,132)",
         fontWeight:'bold',
@@ -88,7 +92,7 @@ const CommonStyles = StyleSheet.create({
         justifyContent: 'center',
         shadowRadius:3,
         shadowOpacity: 0.2,
-        marginTop:'10%',
+        marginTop:'5%',
     },
 
     directionRow: {

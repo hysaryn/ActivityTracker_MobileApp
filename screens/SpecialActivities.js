@@ -6,7 +6,9 @@ import ActivitiesList from '../components/ActivitiesList'
 export default function SpecialActivities() {
   return (
     <View style={CommonStyles.container}>
-      <ActivitiesList type="special" />
+      <View style={{marginTop:10}}>
+        <ActivitiesList type="special" />
+      </View>
     </View>
   )
 }

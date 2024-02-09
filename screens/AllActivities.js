@@ -6,7 +6,9 @@ import ActivitiesList from '../components/ActivitiesList'
 export default function AllActivities() {
   return (
     <View style={CommonStyles.container}>
-        <ActivitiesList type="all" />
+        <View style={{marginTop:10}}>
+            <ActivitiesList type="all" />
+        </View>
     </View>
   )
 }
