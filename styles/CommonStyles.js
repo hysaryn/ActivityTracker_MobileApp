@@ -29,8 +29,9 @@ const CommonStyles = StyleSheet.create({
         justifyContent:'center',
     },
 
-    //container used in add an activity screen
-    addContainer: {
+    //container used in add an activity, 
+    //all and special activities screen
+    container2: {
         flex: 1,
         flexDirection:'row',
         backgroundColor:"rgb(127,123,189)",
@@ -88,7 +89,7 @@ const CommonStyles = StyleSheet.create({
 
     card: {
         backgroundColor: "rgb(60,61,132)",
-        width:340,
+        width:'100%',
         height: 40,
         borderRadius:5,
         justifyContent: 'center',

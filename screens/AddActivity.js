@@ -9,7 +9,7 @@ import Input from '../components/Input';
 
 export default function AddActivity({navigation}) {
     const [duration, setDuration] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
     const {activities, setActivities} = useContext(ActivityContext); 
 
@@ -49,9 +49,16 @@ export default function AddActivity({navigation}) {
         setShowDatePicker(false);
         setDate(currentDate);
       };
+    
+    const pressHandler = () => {
+        if (!date) {
+            setDate(new Date());
+        }
+        setShowDatePicker(!showDatePicker);
+    }
 
       return (
-        <View style={CommonStyles.addContainer}>
+        <View style={CommonStyles.container2}>
             <View style={CommonStyles.contentContainer}>
                 <Text style={[CommonStyles.inputHeader,{marginTop:'10%'}]}>Activity *</Text>
                 <DropDownPicker
@@ -73,10 +80,10 @@ export default function AddActivity({navigation}) {
                 <Input
                     label="Date *"
                     value={date ? date.toDateString() : ''}
-                    focusHandler={() => setShowDatePicker(true)}
+                    focusHandler={pressHandler}
                 />
                 {showDatePicker && <DateTimePicker
-                    value={new Date()}
+                    value={date || new Date()}
                     mode="date"
                     display='inline'
                     onChange={onChangeDate}
