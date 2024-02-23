@@ -43,6 +43,10 @@ const CommonStyles = StyleSheet.create({
         width: '90%'
     },
 
+    startMargin: {
+        width: '98%',
+    },
+
     buttonsContainer:{
         flexDirection:'row',
         width:'100%',

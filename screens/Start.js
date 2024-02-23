@@ -42,25 +42,27 @@ export default function Start({navigation}) {
 
         return (
             <View style={CommonStyles.container}>
-                <Input
-                    label="Email Address"
-                    value={email}
-                    onChangeText={(data) => setEmail(data)}
-                    error={emailError}
-                />
-                <Input
-                    label="Phone Number"
-                    value={phone}
-                    onChangeText={(data) => setPhone(data)}
-                    error={phoneError}
-                />
-                <View style={CommonStyles.buttonsContainer}>
-                    <Button color={'red'} title='Reset' onPress={handleReset} />
-                    <Button 
-                        color={CommonStyles.fontPurple}
-                        title='Confirm'
-                        disabled={!(email || phone)} 
-                        onPress={handleStart} />
+                <View style={CommonStyles.startMargin}>
+                    <Input
+                        label="Email Address"
+                        value={email}
+                        onChangeText={(data) => setEmail(data)}
+                        error={emailError}
+                    />
+                    <Input
+                        label="Phone Number"
+                        value={phone}
+                        onChangeText={(data) => setPhone(data)}
+                        error={phoneError}
+                    />
+                    <View style={CommonStyles.buttonsContainer}>
+                        <Button color={'red'} title='Reset' onPress={handleReset} />
+                        <Button 
+                            color={CommonStyles.fontPurple}
+                            title='Confirm'
+                            disabled={!(email || phone)} 
+                            onPress={handleStart} />
+                    </View>
                 </View>
             </View>
     )
