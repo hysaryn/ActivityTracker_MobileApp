@@ -6,6 +6,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import CommonStyles from '../styles/CommonStyles'
 import Input from '../components/Input';
 import { writeToDB } from '../firebase-files/firebaseHelper';
+import PressableArea from '../components/PressableArea';
 
 export default function AddActivity({navigation}) {
     const [duration, setDuration] = useState('');
@@ -86,8 +87,16 @@ export default function AddActivity({navigation}) {
                     onChange={onChangeDate}
                     /> }
                 <View style={[CommonStyles.buttonsContainer,{marginTop: '40%'}]}>
-                    <Button title="Cancel" color='red' onPress={() => navigation.goBack()} />
-                    <Button title="Save" color={CommonStyles.fontPurple} onPress={saveActivity} />
+                    <PressableArea 
+                        commonStyle={CommonStyles.cancelButton} 
+                        onPressFunc={() => navigation.goBack()}>
+                        <Text style={CommonStyles.buttonFont}>Cancel</Text>
+                    </PressableArea>
+                    <PressableArea 
+                        commonStyle={CommonStyles.confirmButton} 
+                        onPressFunc={saveActivity} >
+                        <Text style={CommonStyles.buttonFont}>Save</Text>
+                    </PressableArea>
                 </View>
             </View>
         </View>

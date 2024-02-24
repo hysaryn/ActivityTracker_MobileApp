@@ -9,6 +9,7 @@ import AllActivities from './screens/AllActivities';
 import SpecialActivities from './screens/SpecialActivities';
 import Start from './screens/Start';
 import CommonStyles from './styles/CommonStyles';
+import PressableArea from './components/PressableArea';
 
 //nested navigation of two bottom tabs in home screen
 const Tab = createBottomTabNavigator();
@@ -22,7 +23,9 @@ const MyTabs = () => {
         tabBarStyle: CommonStyles.purpleDark,
         tabBarActiveTintColor: "rgb(235,187,66)",
         headerRight:() => {
-          return <Button title="Add" color="orange" onPress={() => {navigation.navigate('Add')}} />
+          return <PressableArea onPressFunc={() => {navigation.navigate('Add')}}>
+            <FontAwesome6 name="plus" size={20} color="white"/>
+          </PressableArea>
         },
         tabBarIcon:({size, color}) => {
           let iconName;
@@ -52,10 +55,10 @@ export default function App() {
           headerTintColor:"#fff",
           headerTitleAlign:'center',
         }}>
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="Start"
           component={Start}
-          options={{headerShown:false}}/>
+          options={{headerShown:false}}/> */}
         <Stack.Screen 
           name=" "
           component={MyTabs}
