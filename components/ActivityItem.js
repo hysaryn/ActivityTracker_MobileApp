@@ -15,7 +15,7 @@ export default function ActivityItem({item}) {
             <FontAwesome6 name="triangle-exclamation" size={15} color="orange" />)}
 
             <View style= {[CommonStyles.directionRow, {justifyContent:'flex-end', marginRight:'2%'}]}>
-                <Text style={CommonStyles.boxFont2}> {item.date instanceof Date ? item.date.toDateString() : ''} </Text>
+                <Text style={CommonStyles.boxFont2}> {item.date.toDateString()} </Text>
                 <Text> </Text>
                 <Text style={CommonStyles.boxFont2}> {item.duration} min </Text>
             </View>

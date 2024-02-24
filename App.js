@@ -9,7 +9,6 @@ import AllActivities from './screens/AllActivities';
 import SpecialActivities from './screens/SpecialActivities';
 import Start from './screens/Start';
 import CommonStyles from './styles/CommonStyles';
-import { ActivityProvider } from './components/ActivityContext';
 
 //nested navigation of two bottom tabs in home screen
 const Tab = createBottomTabNavigator();
@@ -53,10 +52,10 @@ export default function App() {
           headerTintColor:"#fff",
           headerTitleAlign:'center',
         }}>
-        {/* <Stack.Screen 
+        <Stack.Screen 
           name="Start"
           component={Start}
-          options={{headerShown:false}}/> */}
+          options={{headerShown:false}}/>
         <Stack.Screen 
           name=" "
           component={MyTabs}

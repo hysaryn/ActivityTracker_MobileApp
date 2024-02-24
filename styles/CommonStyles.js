@@ -77,6 +77,28 @@ const CommonStyles = StyleSheet.create({
         color:"rgb(60,61,132)",
     },
 
+    buttonFont:{
+        color: 'white',
+        fontSize:15,
+        fontWeight:'bold',
+        alignSelf:'center',
+    },
+
+    cancelButton:{
+        backgroundColor:'maroon',
+        width: 125,
+        height: 40,
+        borderRadius:5,
+    },
+
+    confirmButton:{
+        backgroundColor:"rgb(60,61,132)",
+        width: 125,
+        height: 40,
+        borderRadius:5,
+    },
+
+
     boxFont:{
         fontSize:13,
         alignSelf:'flex-start',

@@ -1,8 +1,9 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import CommonStyles from '../styles/CommonStyles';
 
 import Input from '../components/Input';
+import PressableArea from '../components/PressableArea';
 
 export default function Start({navigation}) {
         //initialize userName
@@ -55,13 +56,16 @@ export default function Start({navigation}) {
                         onChangeText={(data) => setPhone(data)}
                         error={phoneError}
                     />
-                    <View style={CommonStyles.buttonsContainer}>
-                        <Button color={'red'} title='Reset' onPress={handleReset} />
-                        <Button 
-                            color={CommonStyles.fontPurple}
-                            title='Confirm'
-                            disabled={!(email || phone)} 
-                            onPress={handleStart} />
+                    <View style={[CommonStyles.buttonsContainer, {marginTop: '10%'}]}>
+                        <PressableArea commonStyle= {CommonStyles.cancelButton} onPressFunc={handleReset} >
+                            <Text style={CommonStyles.buttonFont}>Reset</Text>
+                        </PressableArea>
+                        <PressableArea 
+                            commonStyle= {CommonStyles.confirmButton}
+                            onPressFunc={handleStart} 
+                            disabledCondition={!(email || phone)}>
+                            <Text style={CommonStyles.buttonFont}>Confirm</Text>
+                        </PressableArea>
                     </View>
                 </View>
             </View>
