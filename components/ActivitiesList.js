@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import ActivityItem from './ActivityItem';
 import {collection, onSnapshot, query, where, getDocs} from 'firebase/firestore';
@@ -21,10 +21,9 @@ export default function ActivitiesList({type}) {
             let items = [];
             querySnapshot.forEach((doc) => {
                 //store the data in a new array
-                items.push({...doc.data(), id: doc.id});
+                items.push({...doc.data(), date: doc.data().date.toDate(), id: doc.id});
             });
             setActivities(items);
-            console.log(activities);
         });
         return () => unsubscribe();
     }, []);
@@ -32,7 +31,7 @@ export default function ActivitiesList({type}) {
     return (
         <View>
         <FlatList
-        data={filteredActivities}
+        data={activities}
         renderItem={({item}) => (
             <ActivityItem item={item}/>
         )} />

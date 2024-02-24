@@ -54,10 +54,10 @@ export default function App() {
           headerTintColor:"#fff",
           headerTitleAlign:'center',
         }}>
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="Start"
           component={Start}
-          options={{headerShown:false}}/>
+          options={{headerShown:false}}/> */}
         <Stack.Screen 
           name=" "
           component={MyTabs}

@@ -37,7 +37,6 @@ export default function AddActivity({navigation}) {
         if ((newActivity.activity === 'Weights'|| newActivity.activity === 'Running') && newActivity.duration > 60){
             newActivity = {...newActivity, important: true};
         }
-        console.log(newActivity);
         writeToDB(newActivity);
         navigation.goBack();
     };
