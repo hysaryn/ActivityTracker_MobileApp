@@ -4,14 +4,13 @@ import DropDownPicker from 'react-native-dropdown-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import CommonStyles from '../styles/CommonStyles'
-import {ActivityContext} from '../components/ActivityContext'
 import Input from '../components/Input';
+import { writeToDB } from '../firebase-files/firebaseHelper';
 
 export default function AddActivity({navigation}) {
     const [duration, setDuration] = useState('');
     const [date, setDate] = useState(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
-    const {activities, setActivities} = useContext(ActivityContext); 
 
     //initialize activity drop down category
     const [open, setOpen] = useState(false);
@@ -34,13 +33,12 @@ export default function AddActivity({navigation}) {
         }
     
         // Save activity
-        const newActivity = {
-          type: activityType,
-          duration: parseInt(duration),
-          date: date.toDateString() // Convert date object to string
-        };
-        
-        setActivities((activities) =>[...activities, newActivity]);
+        let newActivity = { activity: activityType, duration: duration, date: date, important: false};
+        if ((newActivity.activity === 'Weights'|| newActivity.activity === 'Running') && newActivity.duration > 60){
+            newActivity = {...newActivity, important: true};
+        }
+        console.log(newActivity);
+        writeToDB(newActivity);
         navigation.goBack();
     };
     

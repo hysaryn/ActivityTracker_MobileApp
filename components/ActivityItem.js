@@ -9,13 +9,13 @@ export default function ActivityItem({item}) {
   return (
     <Card cardStyle={CommonStyles.card}>
         <View style={[CommonStyles.directionRow, {justifyContent:'space-between'}]}>
-            <Text style={CommonStyles.boxFont}>  {item.type}  </Text>
+            <Text style={CommonStyles.boxFont}>  {item.activity}  </Text>
 
-            {(item.type === 'Running' || item.type === 'Weights') && item.duration > 60 && (
+            {(item.important === true) && (
             <FontAwesome6 name="triangle-exclamation" size={15} color="orange" />)}
 
             <View style= {[CommonStyles.directionRow, {justifyContent:'flex-end', marginRight:'2%'}]}>
-                <Text style={CommonStyles.boxFont2}> {item.date} </Text>
+                <Text style={CommonStyles.boxFont2}> {item.date instanceof Date ? item.date.toDateString() : ''} </Text>
                 <Text> </Text>
                 <Text style={CommonStyles.boxFont2}> {item.duration} min </Text>
             </View>
