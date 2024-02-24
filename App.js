@@ -47,7 +47,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <ActivityProvider>
       <Stack.Navigator
         screenOptions = {{
           headerStyle: CommonStyles.purpleDark,
@@ -68,7 +67,6 @@ export default function App() {
           options={{
             title: "Add an Activity"}}/>  
       </Stack.Navigator>
-      </ActivityProvider>
     </NavigationContainer>
   );
 }
