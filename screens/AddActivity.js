@@ -2,6 +2,7 @@ import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Checkbox from 'expo-checkbox';
 
 import CommonStyles from '../styles/CommonStyles'
 import Input from '../components/Input';
@@ -13,8 +14,9 @@ export default function AddActivity({navigation, route}) {
     const [date, setDate] = useState(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [isImportant, setIsImportant] = useState(false);
+    const [isReviewed, setIsReviewed] = useState(false);
 
-    const {mode, activity, type} = route.params;
+    const {mode, activity, type} = route.params || {};
 
     useEffect(() => {
         if (mode === 'edit') {
@@ -38,16 +40,12 @@ export default function AddActivity({navigation, route}) {
         { label: 'Hiking', value: 'Hiking' },
     ]);
 
-    const validateInput = () => {
+    const saveNewActivity = () => {
+        // Validate inputs
         if (isNaN(duration) || duration <= 0 || !activityType || !date) {
             Alert.alert('Invalid Input', 'Please enter valid data.');
             return;
         }
-    }
-
-    const saveNewActivity = () => {
-        // Validate inputs
-        validateInput();
     
         // Save activity
         let newActivity = { activity: activityType, duration: duration, date: date, important: false};
@@ -58,18 +56,32 @@ export default function AddActivity({navigation, route}) {
         navigation.goBack();
     };
 
-    const EditActivity = () => {
+    const editActivity = () => {
         // Validate inputs
-        validateInput();
-    
+        if (isNaN(duration) || duration <= 0 || !activityType || !date) {
+            Alert.alert('Invalid Input', 'Please enter valid data.');
+            return;
+        }
+
         // Edit activity
-        const editedActivity = {
-            ...activity, 
+        let editedActivity = {
             activity: activityType, 
             duration: duration, 
             date: date, 
             important: isImportant
         };
+
+        // Check if the activity is important
+        if ((editedActivity.activity === 'Weights'|| editedActivity.activity === 'Running') && editedActivity.duration > 60){
+            editedActivity = {...editedActivity, important: true};
+        } else {
+            editedActivity = {...editedActivity, important: false};
+        }
+
+        // Check if the activity is reviewed
+        if (isReviewed) {
+            editedActivity = {...editedActivity, important: false};
+        }
 
         updateDB(activity.id, editedActivity);
         type === 'all'? navigation.navigate('All Activities'): navigation.navigate('Special Activities');   
@@ -80,7 +92,7 @@ export default function AddActivity({navigation, route}) {
             {text: 'No', style: 'cancel'},
             {text: 'Yes', style: 'destructive', 
                 onPress: () => {
-                    EditActivity();
+                    editActivity();
                 }}
         ]);
     }
@@ -129,17 +141,28 @@ export default function AddActivity({navigation, route}) {
                     display='inline'
                     onChange={onChangeDate}
                     /> }
-                <View style={[CommonStyles.buttonsContainer,{marginTop: '40%'}]}>
-                    <PressableArea 
-                        commonStyle={CommonStyles.cancelButton} 
-                        onPressFunc={() => navigation.goBack()}>
-                        <Text style={CommonStyles.buttonFont}>Cancel</Text>
-                    </PressableArea>
-                    <PressableArea 
-                        commonStyle={CommonStyles.confirmButton} 
-                        onPressFunc={mode === 'edit'? editHandler: saveNewActivity} >
-                        <Text style={CommonStyles.buttonFont}>Save</Text>
-                    </PressableArea>
+                <View style={{marginTop: '40%'}}>
+                    {mode === 'edit' && activity.important &&
+                    <View style={[CommonStyles.directionRow, {justifyContent:'center', alignItems:'center', marginBottom:'10%'}]}>
+                        <Text style={{color:"rgb(60,61,132)", fontWeight:'bold'}}>
+                            This item is marked as Special. Select the checkbox if you want to approve it.
+                        </Text>
+                        <Checkbox
+                            value={isReviewed}
+                            onValueChange={setIsReviewed} />
+                    </View>}
+                    <View style={[CommonStyles.buttonsContainer]}>
+                        <PressableArea 
+                            commonStyle={CommonStyles.cancelButton} 
+                            onPressFunc={() => navigation.goBack()}>
+                            <Text style={CommonStyles.buttonFont}>Cancel</Text>
+                        </PressableArea>
+                        <PressableArea 
+                            commonStyle={CommonStyles.confirmButton} 
+                            onPressFunc={mode === 'edit'? editHandler: saveNewActivity} >
+                            <Text style={CommonStyles.buttonFont}>Save</Text>
+                        </PressableArea>
+                    </View>
                 </View>
             </View>
         </View>
