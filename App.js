@@ -10,6 +10,7 @@ import SpecialActivities from './screens/SpecialActivities';
 import Start from './screens/Start';
 import CommonStyles from './styles/CommonStyles';
 import PressableArea from './components/PressableArea';
+import EditActivity from './screens/EditActivity';
 
 //nested navigation of two bottom tabs in home screen
 const Tab = createBottomTabNavigator();
@@ -67,7 +68,12 @@ export default function App() {
           name="Add"
           component={AddActivity}
           options={{
-            title: "Add an Activity"}}/>  
+            title: "Add an Activity"}}/>
+        <Stack.Screen
+          name="Edit"
+          component={EditActivity}
+          options={{
+            title: "Edit"}}/>  
       </Stack.Navigator>
     </NavigationContainer>
   );

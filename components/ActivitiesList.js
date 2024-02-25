@@ -21,7 +21,7 @@ export default function ActivitiesList({type}) {
             let items = [];
             querySnapshot.forEach((doc) => {
                 //store the data in a new array
-                items.push({...doc.data(), date: doc.data().date.toDate(), id: doc.id});
+                items.push({...doc.data(), id: doc.id});
             });
             setActivities(items);
         });
@@ -33,7 +33,7 @@ export default function ActivitiesList({type}) {
         <FlatList
         data={activities}
         renderItem={({item}) => (
-            <ActivityItem item={item}/>
+            <ActivityItem item={item} type={type}/>
         )} />
         </View>
     )

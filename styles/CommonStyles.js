@@ -87,15 +87,17 @@ const CommonStyles = StyleSheet.create({
     cancelButton:{
         backgroundColor:'maroon',
         width: 125,
-        height: 40,
+        height: 35,
         borderRadius:5,
+        justifyContent:'center',
     },
 
     confirmButton:{
         backgroundColor:"rgb(60,61,132)",
         width: 125,
-        height: 40,
+        height: 35,
         borderRadius:5,
+        justifyContent:'center',
     },
 
 
