@@ -9,6 +9,7 @@ export default function ActivitiesList({type}) {
     // State to store activities
     const [activities, setActivities] = useState([]);
 
+    // Get activities from the database based on the type
     useEffect(() => {
         let q;
         if (type === 'special') {

@@ -11,6 +11,7 @@ export default function EditActivity({navigation, route}) {
     const {activity} = route.params;
     const {type} = route.params;
 
+    // Delete activity
     const deleteHandler = () => {
         Alert.alert('Delete', 'Are you sure you want to delete this item?', [
             {text: 'No', style: 'cancel'},
@@ -21,6 +22,7 @@ export default function EditActivity({navigation, route}) {
         ]);
     }
 
+    // Set the header right button to delete
     useEffect(() => {
         navigation.setOptions({
           headerRight: () => {
@@ -32,7 +34,9 @@ export default function EditActivity({navigation, route}) {
       }, []);
       
     return (
-        <AddActivity navigation={navigation} route={{params: {mode: 'edit', activity: activity, type: type}}}/>
+        <AddActivity 
+            navigation={navigation} 
+            route={{params: {mode: 'edit', activity: activity, type: type}}}/>
     )
 }
 
