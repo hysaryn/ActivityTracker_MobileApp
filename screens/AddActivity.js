@@ -14,10 +14,12 @@ export default function AddActivity({navigation, route}) {
     const [date, setDate] = useState(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [isImportant, setIsImportant] = useState(false);
+    // set the default value of isReviewed to false
     const [isReviewed, setIsReviewed] = useState(false);
 
     const {mode, activity, type} = route.params || {};
 
+    // Set initial values for edit mode
     useEffect(() => {
         if (mode === 'edit') {
             setActivityType(activity.activity);

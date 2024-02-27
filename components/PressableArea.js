@@ -6,7 +6,8 @@ export default function PressableArea({commonStyle, onPressFunc, disabledConditi
     <Pressable 
         style={({pressed})=> [styles.defaultStyle, commonStyle, pressed && styles.pressed]} 
         onPress={onPressFunc} 
-        disabled={disabledCondition}>
+        disabled={disabledCondition}
+        andriod_ripple={{color:'#e9e'}}>
         {children}
     </Pressable>
   )
