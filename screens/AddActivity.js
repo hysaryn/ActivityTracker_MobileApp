@@ -1,17 +1,33 @@
 import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Checkbox from 'expo-checkbox';
 
 import CommonStyles from '../styles/CommonStyles'
-import {ActivityContext} from '../components/ActivityContext'
 import Input from '../components/Input';
+import { writeToDB, updateDB} from '../firebase-files/firebaseHelper';
+import PressableArea from '../components/PressableArea';
 
-export default function AddActivity({navigation}) {
+export default function AddActivity({navigation, route}) {
     const [duration, setDuration] = useState('');
     const [date, setDate] = useState(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
-    const {activities, setActivities} = useContext(ActivityContext); 
+    const [isImportant, setIsImportant] = useState(false);
+    // set the default value of isReviewed to false
+    const [isReviewed, setIsReviewed] = useState(false);
+
+    const {mode, activity, type} = route.params || {};
+
+    // Set initial values for edit mode
+    useEffect(() => {
+        if (mode === 'edit') {
+            setActivityType(activity.activity);
+            setDuration(activity.duration.toString());
+            setDate(activity.date.toDate());
+            setIsImportant(activity.important);
+        }
+    }, [mode, activity]);
 
     //initialize activity drop down category
     const [open, setOpen] = useState(false);
@@ -26,23 +42,62 @@ export default function AddActivity({navigation}) {
         { label: 'Hiking', value: 'Hiking' },
     ]);
 
-    const saveActivity = () => {
+    const saveNewActivity = () => {
         // Validate inputs
         if (isNaN(duration) || duration <= 0 || !activityType || !date) {
-          Alert.alert('Invalid Input', 'Please enter valid data.');
-          return;
+            Alert.alert('Invalid Input', 'Please enter valid data.');
+            return;
         }
     
         // Save activity
-        const newActivity = {
-          type: activityType,
-          duration: parseInt(duration),
-          date: date.toDateString() // Convert date object to string
-        };
-        
-        setActivities((activities) =>[...activities, newActivity]);
+        let newActivity = { activity: activityType, duration: duration, date: date, important: false};
+        if ((newActivity.activity === 'Weights'|| newActivity.activity === 'Running') && newActivity.duration > 60){
+            newActivity = {...newActivity, important: true};
+        }
+        writeToDB(newActivity);
         navigation.goBack();
     };
+
+    const editActivity = () => {
+        // Validate inputs
+        if (isNaN(duration) || duration <= 0 || !activityType || !date) {
+            Alert.alert('Invalid Input', 'Please enter valid data.');
+            return;
+        }
+
+        // Edit activity
+        let editedActivity = {
+            activity: activityType, 
+            duration: duration, 
+            date: date, 
+            important: isImportant
+        };
+
+        // Check if the activity is important
+        if ((editedActivity.activity === 'Weights'|| editedActivity.activity === 'Running') && editedActivity.duration > 60){
+            editedActivity = {...editedActivity, important: true};
+        } else {
+            editedActivity = {...editedActivity, important: false};
+        }
+
+        // Check if the activity is reviewed
+        if (isReviewed) {
+            editedActivity = {...editedActivity, important: false};
+        }
+
+        updateDB(activity.id, editedActivity);
+        type === 'all'? navigation.navigate('All Activities'): navigation.navigate('Special Activities');   
+    }
+
+    const editHandler = () => {
+        Alert.alert('Important', 'Are you sure you want to save these changes?', [
+            {text: 'No', style: 'cancel'},
+            {text: 'Yes', style: 'destructive', 
+                onPress: () => {
+                    editActivity();
+                }}
+        ]);
+    }
     
     const onChangeDate = (event, selectedDate) => {
         const currentDate = selectedDate;
@@ -88,9 +143,28 @@ export default function AddActivity({navigation}) {
                     display='inline'
                     onChange={onChangeDate}
                     /> }
-                <View style={[CommonStyles.buttonsContainer,{marginTop: '40%'}]}>
-                    <Button title="Cancel" color='red' onPress={() => navigation.goBack()} />
-                    <Button title="Save" color={CommonStyles.fontPurple} onPress={saveActivity} />
+                <View style={{marginTop: '40%'}}>
+                    {mode === 'edit' && activity.important &&
+                    <View style={[CommonStyles.directionRow, {justifyContent:'center', alignItems:'center', marginBottom:'10%'}]}>
+                        <Text style={{color:"rgb(60,61,132)", fontWeight:'bold'}}>
+                            This item is marked as Special. Select the checkbox if you want to approve it.
+                        </Text>
+                        <Checkbox
+                            value={isReviewed}
+                            onValueChange={setIsReviewed} />
+                    </View>}
+                    <View style={[CommonStyles.buttonsContainer]}>
+                        <PressableArea 
+                            commonStyle={CommonStyles.cancelButton} 
+                            onPressFunc={() => navigation.goBack()}>
+                            <Text style={CommonStyles.buttonFont}>Cancel</Text>
+                        </PressableArea>
+                        <PressableArea 
+                            commonStyle={CommonStyles.confirmButton} 
+                            onPressFunc={mode === 'edit'? editHandler: saveNewActivity} >
+                            <Text style={CommonStyles.buttonFont}>Save</Text>
+                        </PressableArea>
+                    </View>
                 </View>
             </View>
         </View>

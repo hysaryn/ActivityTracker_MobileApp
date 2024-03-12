@@ -9,7 +9,8 @@ import AllActivities from './screens/AllActivities';
 import SpecialActivities from './screens/SpecialActivities';
 import Start from './screens/Start';
 import CommonStyles from './styles/CommonStyles';
-import { ActivityProvider } from './components/ActivityContext';
+import PressableArea from './components/PressableArea';
+import EditActivity from './screens/EditActivity';
 
 //nested navigation of two bottom tabs in home screen
 const Tab = createBottomTabNavigator();
@@ -23,7 +24,9 @@ const MyTabs = () => {
         tabBarStyle: CommonStyles.purpleDark,
         tabBarActiveTintColor: "rgb(235,187,66)",
         headerRight:() => {
-          return <Button title="Add" color="orange" onPress={() => {navigation.navigate('Add')}} />
+          return <PressableArea onPressFunc={() => {navigation.navigate('Add')}}>
+            <FontAwesome6 name="plus" size={20} color="white"/>
+          </PressableArea>
         },
         tabBarIcon:({size, color}) => {
           let iconName;
@@ -47,7 +50,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <ActivityProvider>
       <Stack.Navigator
         screenOptions = {{
           headerStyle: CommonStyles.purpleDark,
@@ -66,9 +68,13 @@ export default function App() {
           name="Add"
           component={AddActivity}
           options={{
-            title: "Add an Activity"}}/>  
+            title: "Add an Activity"}}/>
+        <Stack.Screen
+          name="Edit"
+          component={EditActivity}
+          options={{
+            title: "Edit"}}/>  
       </Stack.Navigator>
-      </ActivityProvider>
     </NavigationContainer>
   );
 }
